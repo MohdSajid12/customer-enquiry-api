@@ -7,6 +7,8 @@ const enquiryRoutes = require("./routes/enquiryRoutes");
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(helmet());
 app.use(express.json());
 app.use(cors());
@@ -20,7 +22,6 @@ const enquiryLimiter = rateLimit({
     }
 });
 
-
 app.use("/api",enquiryLimiter,enquiryRoutes);
 
 app.get("/", (req, res) => {
@@ -29,5 +30,6 @@ app.get("/", (req, res) => {
         message: "Customer Enquiry API is running"
     });
 });
+
 
 module.exports = app;
