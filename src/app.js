@@ -20,7 +20,8 @@ const enquiryLimiter = rateLimit({
     }
 });
 
-app.use( "/api",enquiryLimiter, enquiryRoutes);
+
+app.use("/api",enquiryLimiter,enquiryRoutes);
 
 app.get("/", (req, res) => {
     res.json({
@@ -28,4 +29,5 @@ app.get("/", (req, res) => {
         message: "Customer Enquiry API is running"
     });
 });
+
 module.exports = app;
