@@ -11,7 +11,11 @@ app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://customer-enquiry-five.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"]
+}));
 
 const enquiryLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
